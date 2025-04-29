@@ -1,0 +1,183 @@
+/* This stylesheet creates a responsive card-based UI with interactive flipping behavior, central layout, and utility classes (e.g., .container, .center, .btn).  */
+
+/* Global Style */
+* {
+  /* Ensures all elements include padding and border in width/height */
+  box-sizing: border-box; 
+  /* Remove default margin and padding for a consistent baseline */
+  margin: 0; 
+  padding: 0;
+}
+
+html,
+body {
+  /* Set a full-screen dark background image with white text */
+  background: #000 url('img/bg.jpg') no-repeat center center/cover;
+  height: 100vh;
+  color: #fff;
+  /* Use sans-serif font for modern appearance */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Links */
+
+a {
+  /* Remove underlines from links */
+  text-decoration: none;
+}
+
+/* Container Class */
+
+.container {
+  /* Constrain width for readability on large screens */
+  max-width: 1100px;
+  /* Center content with padding on the sides */
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* Buttons */
+
+.btn {
+  /* Styles .btn as a green, white-text button with spacing and padding */
+  display: inline-block;
+  color: #fff;
+  background-color: #3fb573; 
+  font-size: 1em;
+  text-align: center;
+  padding: 10px 15px;
+  border: 0;
+  margin: 10px 0;
+}
+
+/* Header and Logo */
+
+header {
+  /* Fix header height  */
+  height: 200px;
+}
+
+header img {
+  /* Fix logo width */
+  width: 200px;
+}
+
+/* Centering Utility */
+
+.center {
+  /* Flex utility to center elements both vertically and horizontally. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Search Box */
+
+.search {
+  /* Style central text input for search functionality */
+  height: 100px;
+}
+
+input[type='text'] {
+  display: block;
+  padding: 10px;
+  font-size: 20px;
+  border: 0;
+  border-radius: 5px;
+  width: 60%;
+  margin: auto;
+  outline: none;
+}
+
+/* Card Grid Layout */
+
+.cards {
+  /* A 4-column responsive grid with gaps between cards */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.card {
+  /* Enable 3D flipping of cards on hover */
+  cursor: pointer;
+  background-color: transparent;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.card h1 {
+  /* Format headings in cards */
+  font-size: 25px;
+  border-bottom: 1px #fff solid;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.card img {
+  /* Format images in cards */
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+/* Enable a smooth 3D card flip effect on hover */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  /* Hide the back side when not facing the viewer */
+  position: absolute; /* Ensure both .card-front and .card-back overlap perfectly inside the .card-inner container. */
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; /* Hides the backface of each side (i.e., prevents you from seeing the "flipped" side when it's turned away from you). */
+}
+
+.card-back {
+  /* Style and rotate the card back to appear on flip */
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  transform: rotateY(180deg);
+}
+
+.card li {
+  /* Remove bullet points from lists */
+  list-style: none;
+  padding-bottom: 10px;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 800px) {
+  /* Makes the card grid responsive */
+  .cards {
+    /* 4 → 2 columns on tablets */
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .cards {
+    /* 1 column on mobile */
+    grid-template-columns: 1fr;
+  }
+  .card img {
+    /* Adjust image fitting on smaller screens for better scaling */
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+  }
+}
