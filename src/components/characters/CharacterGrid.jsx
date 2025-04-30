@@ -1,4 +1,5 @@
 import React from 'react'
+import CharacterItem from './CharacterItem' // To render character info
 
 const CharacterGrid = ({ items, isLoading }) => { // Receive props
 
@@ -6,9 +7,15 @@ const CharacterGrid = ({ items, isLoading }) => { // Receive props
   
                         <section className='cards'> 
                            { 
-                            /* Map through items array & show name of each character */
+                            /* Map through items array */
                             items.map(item => (
-                                <h1>{ item.character.name }</h1>
+
+                                /* Render CharacterItem */
+                                <CharacterItem 
+                                    key={item.character.id} // Use character.id as unique key prop
+                                    item={item}             // Pass current item as a prop
+                                 > 
+                                 </CharacterItem>
                            )) 
                            }   
 
