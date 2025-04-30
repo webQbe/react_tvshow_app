@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import Header from './components/ui/Header' // import Header component
 import './App.css'
 
 const App = () => {
 
   return (
     <div className="container">
-      <h1>Hello</h1>
+      <Header /> {/* Render Header */}
     </div>
   )
 }
